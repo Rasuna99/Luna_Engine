@@ -3,6 +3,9 @@
 
 #include "framework.h"
 #include "LunaEngine.h"
+#include "../LunaEngine_source/Aplication.h"
+
+#pragma comment (lib, "../x64/Debug/LunaEngineV2.lib")
 
 #define MAX_LOADSTRING 100
 

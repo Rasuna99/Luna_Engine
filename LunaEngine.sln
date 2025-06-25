@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LunaEngine", "LunaEngine\LunaEngine.vcxproj", "{D74BA978-61E7-433C-828E-CFC4691C60BB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LunaEngine_source", "LunaEngine_source\LunaEngine_source.vcxitems", "{39A02759-8A12-430E-97CE-FE45CAB3C474}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LunaEngineV2", "LunaEngineV2\LunaEngineV2.vcxproj", "{A547F3B2-0844-4A99-B82D-B4ABE9203152}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,11 +25,23 @@ Global
 		{D74BA978-61E7-433C-828E-CFC4691C60BB}.Release|x64.Build.0 = Release|x64
 		{D74BA978-61E7-433C-828E-CFC4691C60BB}.Release|x86.ActiveCfg = Release|Win32
 		{D74BA978-61E7-433C-828E-CFC4691C60BB}.Release|x86.Build.0 = Release|Win32
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Debug|x64.ActiveCfg = Debug|x64
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Debug|x64.Build.0 = Debug|x64
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Debug|x86.ActiveCfg = Debug|Win32
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Debug|x86.Build.0 = Debug|Win32
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Release|x64.ActiveCfg = Release|x64
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Release|x64.Build.0 = Release|x64
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Release|x86.ActiveCfg = Release|Win32
+		{A547F3B2-0844-4A99-B82D-B4ABE9203152}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A20CCF89-E440-44F4-92C2-5226A963F138}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		LunaEngine_source\LunaEngine_source.vcxitems*{39a02759-8a12-430e-97ce-fe45cab3c474}*SharedItemsImports = 9
+		LunaEngine_source\LunaEngine_source.vcxitems*{a547f3b2-0844-4a99-b82d-b4abe9203152}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
