@@ -25,5 +25,6 @@ namespace Luna
 	private:
 		float mX;
 		float mY;
+		const int speed = 100.0f;
 	};
 }

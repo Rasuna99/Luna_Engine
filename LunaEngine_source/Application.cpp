@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Input.h"
+#include "LuTime.h"
 
 namespace Luna
 {
@@ -23,6 +24,7 @@ namespace Luna
 		mPlayer2.SetPosition(0, 0);
 
 		Input::Initialize();
+		Time::Initialize();
 	}
 	
 	void Application::Run()
@@ -37,6 +39,7 @@ namespace Luna
 		mPlayer.Update();
 		mPlayer2.Update2();
 		Input::Update();
+		Time::Update();
 	}
 
 	void Application::LateUpdate()
@@ -46,6 +49,7 @@ namespace Luna
 
 	void Application::Render()
 	{
+		Time::Render(mHdc);
 		mPlayer.Render(mHdc);
 		mPlayer2.Render2(mHdc);
 	}
