@@ -1,8 +1,11 @@
 #include "GameObject.h"
+#include "Input.h"
 
 namespace Luna
 {
 	Luna::GameObject::GameObject()
+		: mX(0.0f)
+		, mY(0.0f)
 	{
 	}
 
@@ -12,22 +15,22 @@ namespace Luna
 
 	void GameObject::Update()
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		if (Input::GetKey(eKeyCode::Left))
 		{
 			mX -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		if (Input::GetKey(eKeyCode::Right))
 		{
 			mX += 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		if (Input::GetKey(eKeyCode::Up))
 		{
 			mY -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		if (Input::GetKey(eKeyCode::Down))
 		{
 			mY += 0.01f;
 		}
@@ -54,6 +57,44 @@ namespace Luna
 		SelectObject(hdc, oldBrush);
 		DeleteObject(blueBrush);
 		DeleteObject(redPen);
+	}
+
+	void GameObject::Update2()
+	{
+		if (Input::GetKey(eKeyCode::A))
+		{
+			mX -= 0.01f;
+		}
+
+		if (Input::GetKey(eKeyCode::D))
+		{
+			mX += 0.01f;
+		}
+
+		if (Input::GetKey(eKeyCode::W))
+		{
+			mY -= 0.01f;
+		}
+
+		if (Input::GetKey(eKeyCode::S))
+		{
+			mY += 0.01f;
+		}
+	}
+
+	void GameObject::LateUpdate2()
+	{
+	}
+
+	void GameObject::Render2(HDC hdc)
+	{
+		HBRUSH redBrush = CreateSolidBrush(RGB(255, 0, 0));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, redBrush);
+
+		Ellipse(hdc, 1200 + mX, 400 + mY, 1300 + mX, 500 + mY);
+
+		SelectObject(hdc, oldBrush);
+		DeleteObject(redBrush);
 	}
 
 	void GameObject::SetPosition(float x, float y)

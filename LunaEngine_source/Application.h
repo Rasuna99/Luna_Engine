@@ -21,6 +21,7 @@ namespace Luna
 		HWND mHwnd;
 		HDC mHdc;
 		GameObject mPlayer;
+		GameObject mPlayer2;
 	};
 }
 
