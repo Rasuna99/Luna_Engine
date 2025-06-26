@@ -43,5 +43,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		LunaEngine_source\LunaEngine_source.vcxitems*{39a02759-8a12-430e-97ce-fe45cab3c474}*SharedItemsImports = 9
 		LunaEngine_source\LunaEngine_source.vcxitems*{a547f3b2-0844-4a99-b82d-b4abe9203152}*SharedItemsImports = 4
+		LunaEngine_source\LunaEngine_source.vcxitems*{d74ba978-61e7-433c-828e-cfc4691c60bb}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

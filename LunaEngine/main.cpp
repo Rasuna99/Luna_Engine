@@ -3,9 +3,11 @@
 
 #include "framework.h"
 #include "LunaEngine.h"
-#include "../LunaEngine_source/Aplication.h"
+#include "../LunaEngine_source/Application.h"
 
 #pragma comment (lib, "../x64/Debug/LunaEngineV2.lib")
+
+Luna::Application application;
 
 #define MAX_LOADSTRING 100
 
@@ -59,7 +61,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-
+            application.Run();
         }
     }
 
@@ -110,6 +112,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+
+   application.Initialize(hWnd);
 
    if (!hWnd)
    {
