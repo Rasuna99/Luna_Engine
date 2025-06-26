@@ -10,7 +10,7 @@ namespace Luna
 		Application();
 		~Application();
 
-		void Initialize(HWND hwnd);
+		void Initialize(HWND hwnd, UINT width, UINT height);
 		void Run();
 
 		void Update();
@@ -20,6 +20,13 @@ namespace Luna
 	private:
 		HWND mHwnd;
 		HDC mHdc;
+
+		HDC mBackHdc;
+		HBITMAP mBackBuffer;
+
+		UINT mWidth;
+		UINT mHeight;
+
 		GameObject mPlayer;
 		GameObject mPlayer2;
 	};
