@@ -27,7 +27,10 @@ namespace Luna
 		RECT rect = { 0, 0, width, height };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
-		SetWindowPos(mHwnd, nullptr, 0, 0, rect.right - rect.left, rect.bottom - rect.top, 0);
+		mWidth = rect.right - rect.left;
+		mHeight = rect.bottom - rect.top;
+
+		SetWindowPos(mHwnd, nullptr, 0, 0, mWidth, mHeight, 0);
 		ShowWindow(mHwnd, true);
 
 		// 윈도우 해상도에 맞는 백버퍼 생성
@@ -67,10 +70,12 @@ namespace Luna
 
 	void Application::Render()
 	{
+		Rectangle(mBackHdc, -1, -1, 1601, 901);
+
 		Time::Render(mBackHdc);
 		mPlayer.Render(mBackHdc);
 		mPlayer2.Render2(mBackHdc);
 
-		BitBlt(mHdc,0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
+		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
 	}
 }
