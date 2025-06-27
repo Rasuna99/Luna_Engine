@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Input.h"
 #include "LuTime.h"
+#include "SceneManager.h"
 
 namespace Luna
 {
@@ -41,8 +42,7 @@ namespace Luna
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBuffer);
 		DeleteObject(oldBitmap);
 		
-		mPlayer.SetPosition(0, 0);
-		mPlayer2.SetPosition(0, 0);
+		SceneManager::Initialize();
 
 		Input::Initialize();
 		Time::Initialize();
@@ -57,8 +57,8 @@ namespace Luna
 
 	void Application::Update()
 	{
-		mPlayer.Update();
-		mPlayer2.Update2();
+		SceneManager::Update();
+
 		Input::Update();
 		Time::Update();
 	}
@@ -70,12 +70,21 @@ namespace Luna
 
 	void Application::Render()
 	{
-		Rectangle(mBackHdc, -1, -1, 1601, 901);
+		clearRenderTarget();
 
 		Time::Render(mBackHdc);
-		mPlayer.Render(mBackHdc);
-		mPlayer2.Render2(mBackHdc);
+		SceneManager::Render(mBackHdc);
 
-		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
+		CopyRenderTarget(mBackHdc, mHdc);
+	}
+
+	void Application::clearRenderTarget()
+	{
+		Rectangle(mBackHdc, -1, -1, 1601, 901);
+	}
+
+	void Application::CopyRenderTarget(HDC source, HDC dest)
+	{
+		BitBlt(dest, 0, 0, mWidth, mHeight, source, 0, 0, SRCCOPY);
 	}
 }

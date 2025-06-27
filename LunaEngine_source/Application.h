@@ -18,6 +18,10 @@ namespace Luna
 		void Render();
 
 	private:
+		void clearRenderTarget();
+		void CopyRenderTarget(HDC source, HDC dest);
+
+	private:
 		HWND mHwnd;
 		HDC mHdc;
 
@@ -27,8 +31,7 @@ namespace Luna
 		UINT mWidth;
 		UINT mHeight;
 
-		GameObject mPlayer;
-		GameObject mPlayer2;
+		std::vector<GameObject*> mGameObjects;
 	};
 }
 

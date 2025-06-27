@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "LunaEngine.h"
 #include "../LunaEngine_source/Application.h"
+#include "../LunaEngineV2/LoadScene.h"
 
 #pragma comment (lib, "../x64/Debug/LunaEngineV2.lib")
 
@@ -124,6 +125,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+ 
 
    return TRUE;
 }
