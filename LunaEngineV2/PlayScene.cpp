@@ -24,7 +24,7 @@ namespace Luna
 
 		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 		sr->SetName(L"SR");
-		sr->ImageLoad(L"D:\LunaEngine\Resources\CloudOcean.png");
+		sr->ImageLoad(L"D:/LunaEngine/Resources/CloudOcean.png");
 		
 		AddGameObject(bg);
 	}
