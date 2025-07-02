@@ -16,42 +16,17 @@ namespace Luna
 
 	void PlayScene::Initialize()
 	{
-		{
-			Player* pl = new Player;
-			Transform* tr = pl->AddComponent<Transform>();
-			tr->SetPos(800, 450);
+		Player* bg = new Player();
+		Transform* tr = bg->AddComponent<Transform>();
+		tr->SetPos(Vector2(0, 0));
 
-			tr->SetName(L"TR");
+		tr->SetName(L"TR");
 
-			SpriteRenderer* sr = pl->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(pl);
-		}
-		{
-			Player* pl = new Player;
-			Transform* tr = pl->AddComponent<Transform>();
-			tr->SetPos(300, 450);
-
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr = pl->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(pl);
-		}
-		{
-			Player* pl = new Player;
-			Transform* tr = pl->AddComponent<Transform>();
-			tr->SetPos(100, 650);
-
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr = pl->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(pl);
-		}
+		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+		sr->SetName(L"SR");
+		sr->ImageLoad(L"D:\LunaEngine\Resources\CloudOcean.png");
+		
+		AddGameObject(bg);
 	}
 
 	void PlayScene::Update()
