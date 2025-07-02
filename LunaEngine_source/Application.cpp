@@ -11,7 +11,7 @@ namespace Luna
 		, mWidth(0)
 		, mHeight(0)
 		, mBackHdc(NULL)
-		, mBackBuffer(NULL)
+		, mBackBitmap(NULL)
 	{
 
 	}
@@ -20,32 +20,16 @@ namespace Luna
 
 	}
 
-	void Application::Initialize(HWND Hwnd, UINT width, UINT height)
+	void Application::Initialize(HWND hwnd, UINT width, UINT height)
 	{
-		mHwnd = Hwnd;
-		mHdc = GetDC(Hwnd);
-
-		RECT rect = { 0, 0, width, height };
-		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-		mWidth = rect.right - rect.left;
-		mHeight = rect.bottom - rect.top;
-
-		SetWindowPos(mHwnd, nullptr, 0, 0, mWidth, mHeight, 0);
-		ShowWindow(mHwnd, true);
-
-		// 윈도우 해상도에 맞는 백버퍼 생성
-		mBackBuffer = CreateCompatibleBitmap(mHdc, width, height);
-		// 백버퍼를 가르킬 DC 생성
-		mBackHdc = CreateCompatibleDC(mHdc);
-
-		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBuffer);
-		DeleteObject(oldBitmap);
 		
+		adjustWindowRect(hwnd, width, height);
+		createBuffer(width, height);
+		initializeEtc();
+
 		SceneManager::Initialize();
 
-		Input::Initialize();
-		Time::Initialize();
+		
 	}
 	
 	void Application::Run()
@@ -75,7 +59,7 @@ namespace Luna
 		Time::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
-		CopyRenderTarget(mBackHdc, mHdc);
+		copyRenderTarget(mBackHdc, mHdc);
 	}
 
 	void Application::clearRenderTarget()
@@ -83,7 +67,39 @@ namespace Luna
 		Rectangle(mBackHdc, -1, -1, 1601, 901);
 	}
 
-	void Application::CopyRenderTarget(HDC source, HDC dest)
+	void Application::adjustWindowRect(HWND hwnd, UINT width, UINT height)
+	{
+		mHwnd = hwnd;
+		mHdc = GetDC(hwnd);
+
+		RECT rect = { 0, 0, width, height };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+		mWidth = rect.right - rect.left;
+		mHeight = rect.bottom - rect.top;
+
+		SetWindowPos(mHwnd, nullptr, 0, 0, mWidth, mHeight, 0);
+		ShowWindow(mHwnd, true);
+	}
+
+	void Application::createBuffer(UINT width, UINT height)
+	{
+		// 윈도우 해상도에 맞는 백버퍼 생성
+		mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
+		// 백버퍼를 가르킬 DC 생성
+		mBackHdc = CreateCompatibleDC(mHdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
+		DeleteObject(oldBitmap);
+	}
+
+	void Application::initializeEtc()
+	{
+		Input::Initialize();
+		Time::Initialize();
+	}
+
+	void Application::copyRenderTarget(HDC source, HDC dest)
 	{
 		BitBlt(dest, 0, 0, mWidth, mHeight, source, 0, 0, SRCCOPY);
 	}

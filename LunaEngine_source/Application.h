@@ -19,19 +19,22 @@ namespace Luna
 
 	private:
 		void clearRenderTarget();
-		void CopyRenderTarget(HDC source, HDC dest);
+		void copyRenderTarget(HDC source, HDC dest);
+		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void createBuffer(UINT width, UINT height);
+		void initializeEtc();
 
 	private:
 		HWND mHwnd;
 		HDC mHdc;
 
 		HDC mBackHdc;
-		HBITMAP mBackBuffer;
+		HBITMAP mBackBitmap;
 
 		UINT mWidth;
 		UINT mHeight;
 
-		std::vector<GameObject*> mGameObjects;
+		//std::vector<Scene*> mScenes;
 	};
 }
 

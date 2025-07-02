@@ -39,4 +39,8 @@ namespace Luna
 			GameObj->Render(hdc);
 		}
 	}
+	void Scene::AddGameObject(GameObject* gameObject)
+	{
+		mGameObjects.push_back(gameObject);
+	}
 }

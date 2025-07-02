@@ -1,11 +1,13 @@
 #pragma once
-#include "SceneManager.h"
+#include "../LunaEngine_source/SceneManager.h"
 #include "PlayScene.h"
 
 namespace Luna
 {
-	void LoadScene()
+	void LoadScenes()
 	{
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
+
+		SceneManager::LoadScene(L"PlayScene");
 	}
 }

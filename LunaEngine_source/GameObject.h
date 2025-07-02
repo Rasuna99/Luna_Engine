@@ -13,11 +13,11 @@ namespace Luna
 		void LateUpdate();
 		void Render(HDC hdc);
 
-		void Update2();
-		void LateUpdate2();
-		void Render2(HDC hdc);
-
-		void SetPosition(float x, float y);
+		void SetPosition(float x, float y)
+		{
+			mX = x;
+			mY = y;
+		}
 
 		float GetPositionX() { return mX; }
 		float GetPositionY() { return mY; }
@@ -25,6 +25,5 @@ namespace Luna
 	private:
 		float mX;
 		float mY;
-		const int speed = 100.0f;
 	};
 }

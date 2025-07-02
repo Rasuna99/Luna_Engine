@@ -2,21 +2,23 @@
 
 namespace Luna
 {
-	void Luna::SceneManager::Initialize()
+	std::map<std::wstring, Scene*> SceneManager::mScene = {};
+	Scene* SceneManager::mActiveScene = nullptr;
+	void SceneManager::Initialize()
 	{
 	}
 
-	void Luna::SceneManager::Update()
+	void SceneManager::Update()
 	{
 		mActiveScene->Update();
 	}
 
-	void Luna::SceneManager::LateUpdate()
+	void SceneManager::LateUpdate()
 	{
 		mActiveScene->LateUpdate();
 	}
 
-	void Luna::SceneManager::Render(HDC hdc)
+	void SceneManager::Render(HDC hdc)
 	{
 		mActiveScene->Render(hdc);
 	}

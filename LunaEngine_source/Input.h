@@ -37,7 +37,12 @@ namespace Luna
 		static bool GetKey(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Pressed; }
 
 	private:
-		static void CreateKeys();
+		static void createKeys();
+		static void updateKeys();
+		static void updateKey(Input::Key& key);
+		static bool isKeyDown(eKeyCode code);
+		static void updateKeyDown(Input::Key& key);
+		static void updateKeyUp(Input::Key& key);
 	private:
 		static std::vector<Key> mKeys;
 	};
