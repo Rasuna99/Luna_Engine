@@ -1,24 +1,16 @@
 #pragma once
-#include "../LunaEngine_source/Scene.h"
+#include "../LunaEngine_source/GameObject.h"
 
 namespace Luna
 {
-	class PlayScene : public Scene
+	class GeneralStore :  public GameObject
 	{
 	public:
-		PlayScene();
-		~PlayScene();
-
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void OnEnter() override;
-		void OnExit() override;
-
 	private:
-		class Player* bg;
 	};
 }
-

@@ -1,4 +1,7 @@
 #include "Player.h"
+#include "Input.h"
+#include "Transform.h"
+#include "LuTime.h"
 
 namespace Luna
 {
@@ -13,6 +16,14 @@ namespace Luna
 	void Player::LateUpdate()
 	{
 		GameObject::LateUpdate();
+
+		if (Input::GetKey(eKeyCode::Right))
+		{
+			Transform* tr = GetComponent<Transform>();
+			Vector2 pos = tr->GetPosition();
+			pos.x += 100.0f * Time::GetDeltaTime();
+			tr->SetPos(pos);
+		}
 	}
 	void Player::Render(HDC hdc)
 	{

@@ -3,9 +3,13 @@
 namespace Luna
 {
 	Luna::Scene::Scene()
-		: mGameObjects{}
+		: mLayers{}
 	{
-
+		mLayers.resize((UINT)eLayerTpye::Max);
+		for (size_t i = 0; i < (UINT)eLayerTpye::Max; i++)
+		{
+			mLayers[i] = new Layer;
+		}
 	}
 
 	Scene::~Scene()
@@ -14,33 +18,55 @@ namespace Luna
 
 	void Scene::Initialize()
 	{
+		for (auto layer : mLayers)
+		{
+			if (layer == nullptr)
+				continue;
+
+			layer->Initialize();
+		}
 	}
 
 	void Scene::Update()
 	{
-		for (auto GameObj : mGameObjects)
+		for (auto layer : mLayers)
 		{
-			GameObj->Update();
+			if (layer == nullptr)
+				continue;
+
+			layer->Update();
 		}
 	}
 
 	void Scene::LateUpdate()
 	{
-		for (auto GameObj : mGameObjects)
+		for (auto layer : mLayers)
 		{
-			GameObj->LateUpdate();
+			if (layer == nullptr)
+				continue;
+
+			layer->LateUpdate();
 		}
 	}
 
 	void Scene::Render(HDC hdc)
 	{
-		for (auto GameObj : mGameObjects)
+		for (auto layer : mLayers)
 		{
-			GameObj->Render(hdc);
+			if (layer == nullptr)
+				continue;
+
+			layer->Render(hdc);
 		}
 	}
-	void Scene::AddGameObject(GameObject* gameObject)
+	void Scene::OnEnter()
 	{
-		mGameObjects.push_back(gameObject);
+	}
+	void Scene::OnExit()
+	{
+	}
+	void Scene::AddGameObject(GameObject* gameObj, const eLayerTpye type)
+	{
+		mLayers[(UINT)type]->AddGameObject(gameObj);
 	}
 }

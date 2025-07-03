@@ -1,24 +1,20 @@
-#include "PlayScene.h"
-#include "GameObject.h"
+#include "TitleScene.h"
 #include "Player.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "Input.h"
-#include "TitleScene.h"
+#include "PlayScene.h"
 #include "SceneManager.h"
-#include "Layer.h"
 
 namespace Luna
 {
-	PlayScene::PlayScene()
+	TitleScene::TitleScene()
 	{
 	}
-
-	PlayScene::~PlayScene()
+	TitleScene::~TitleScene()
 	{
 	}
-
-	void PlayScene::Initialize()
+	void TitleScene::Initialize()
 	{
 		bg = new Player();
 		Transform* tr = bg->AddComponent<Transform>();
@@ -28,34 +24,31 @@ namespace Luna
 
 		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 		sr->SetName(L"SR");
-		sr->ImageLoad(L"D:/LunaEngine/Resources/CloudOcean.png");
-		
+		sr->ImageLoad(L"D:/LunaEngine/Resources/Title.png");
+
 		AddGameObject(bg, eLayerTpye::BackGrond);
 	}
-
-	void PlayScene::Update()
+	void TitleScene::Update()
 	{
 		Scene::Update();
 	}
-
-	void PlayScene::LateUpdate()
+	void TitleScene::LateUpdate()
 	{
 		Scene::LateUpdate();
 
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"TitleScene");
+			SceneManager::LoadScene(L"PlayScene");
 		}
 	}
-
-	void PlayScene::Render(HDC hdc)
+	void TitleScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
-	void PlayScene::OnEnter()
+	void TitleScene::OnEnter()
 	{
 	}
-	void PlayScene::OnExit()
+	void TitleScene::OnExit()
 	{
 		Transform* tr = bg->GetComponent<Transform>();
 		tr->SetPos(Vector2(0, 0));
