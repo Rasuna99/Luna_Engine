@@ -1,11 +1,13 @@
 #include "GameObject.h"
 #include "Input.h"
 #include "LuTime.h"
+#include "Transform.h"
 
 namespace Luna
 {
 	GameObject::GameObject()
 	{
+		initializeTransform();
 	}
 
 	GameObject::~GameObject()
@@ -42,5 +44,9 @@ namespace Luna
 		{
 			comp->Render(hdc);
 		}
+	}
+	void GameObject::initializeTransform()
+	{
+		AddComponent<Transform>();
 	}
 }

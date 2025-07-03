@@ -20,7 +20,7 @@ namespace Luna
 
 
 	private:
-		eLayerTpye mType;
+		enums::eLayerTpye mType;
 		std::vector<GameObject*> mGameObjects;
 	};
 }

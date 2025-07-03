@@ -19,7 +19,11 @@ namespace Luna
 		virtual void OnEnter();
 		virtual void OnExit();
 
-		void AddGameObject(GameObject* gameObj, const eLayerTpye type);
+		void AddGameObject(GameObject* gameObj, const enums::eLayerTpye type);
+		Layer* GetLayer(const enums::eLayerTpye type) { return mLayers[(UINT)type]; }
+
+	private:
+		void CreateLayers();
 
 	private:
 		std::vector<Layer*> mLayers;

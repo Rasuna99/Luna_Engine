@@ -5,8 +5,8 @@ namespace Luna
 	Luna::Scene::Scene()
 		: mLayers{}
 	{
-		mLayers.resize((UINT)eLayerTpye::Max);
-		for (size_t i = 0; i < (UINT)eLayerTpye::Max; i++)
+		mLayers.resize((UINT)enums::eLayerTpye::Max);
+		for (size_t i = 0; i < (UINT)enums::eLayerTpye::Max; i++)
 		{
 			mLayers[i] = new Layer;
 		}
@@ -65,8 +65,16 @@ namespace Luna
 	void Scene::OnExit()
 	{
 	}
-	void Scene::AddGameObject(GameObject* gameObj, const eLayerTpye type)
+	void Scene::AddGameObject(GameObject* gameObj, const enums::eLayerTpye type)
 	{
 		mLayers[(UINT)type]->AddGameObject(gameObj);
+	}
+	void Scene::CreateLayers()
+	{
+		mLayers.resize((UINT)enums::eLayerTpye::Max);
+		for (size_t i = 0; i < (UINT)enums::eLayerTpye::Max; i++)
+		{
+			mLayers[i] = new Layer();
+		}
 	}
 }

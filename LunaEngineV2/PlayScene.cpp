@@ -7,6 +7,7 @@
 #include "TitleScene.h"
 #include "SceneManager.h"
 #include "Layer.h"
+#include "Object.h"
 
 namespace Luna
 {
@@ -20,17 +21,21 @@ namespace Luna
 
 	void PlayScene::Initialize()
 	{
-		bg = new Player();
-		Transform* tr = bg->AddComponent<Transform>();
-		tr->SetPos(Vector2(0, 0));
+		//bg = new Player();
+		//Transform* tr = bg->AddComponent<Transform>();
+		//tr->SetPos(Vector2(0, 0));
+		//
+		//tr->SetName(L"TR");
+		//
+		//SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+		//sr->SetName(L"SR");
+		//sr->ImageLoad(L"D:/LunaEngine/Resources/CloudOcean.png");
+		//
+		//AddGameObject(bg, eLayerTpye::BackGrond);
 
-		tr->SetName(L"TR");
-
+		bg = object::Instantiate<Player>(enums::eLayerTpye::BackGrond, Vector2(100.0f, 100.0f));
 		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-		sr->SetName(L"SR");
 		sr->ImageLoad(L"D:/LunaEngine/Resources/CloudOcean.png");
-		
-		AddGameObject(bg, eLayerTpye::BackGrond);
 	}
 
 	void PlayScene::Update()
@@ -57,7 +62,7 @@ namespace Luna
 	}
 	void PlayScene::OnExit()
 	{
-		Transform* tr = bg->GetComponent<Transform>();
-		tr->SetPos(Vector2(0, 0));
+		//Transform* tr = bg->GetComponent<Transform>();
+		//tr->SetPosition(Vector2(0, 0));
 	}
 }

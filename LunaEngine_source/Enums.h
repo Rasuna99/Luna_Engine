@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Luna
+namespace Luna::enums
 {
 	enum class eLayerTpye
 	{
