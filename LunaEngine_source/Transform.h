@@ -9,6 +9,9 @@ namespace Luna
 	class Transform : public Component
 	{
 	public:
+		Transform();
+		~Transform();
+
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 

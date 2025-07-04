@@ -2,6 +2,15 @@
 
 namespace Luna::enums
 {
+	enum class eComponentType
+	{
+		Transform,
+		SpriteRenderer,
+		Script,
+		End,
+	};
+
+
 	enum class eLayerTpye
 	{
 		None,

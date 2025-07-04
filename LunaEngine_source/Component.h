@@ -7,7 +7,7 @@ namespace Luna
 	class Component : public Entity
 	{
 	public:
-		Component();
+		Component(enums::eComponentType type);
 		~Component();
 
 		virtual void Initialize();
@@ -19,5 +19,6 @@ namespace Luna
 		GameObject* GetOwner() { return mOwner; }
 	private:
 		GameObject* mOwner;
+		enums::eComponentType mType;
 	};
 }

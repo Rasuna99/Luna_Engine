@@ -8,7 +8,7 @@ namespace Luna
 	SpriteRenderer::SpriteRenderer()
 		: mScale(Vector2::one)
 		, mTexture(nullptr)
-		, Component()
+		, Component(enums::eComponentType::SpriteRenderer)
 	{
 	}
 	SpriteRenderer::~SpriteRenderer()
