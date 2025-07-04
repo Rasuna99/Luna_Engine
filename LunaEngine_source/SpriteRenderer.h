@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Component.h"
+#include "Texture.h"
 
 namespace Luna
 {
@@ -15,11 +16,11 @@ namespace Luna
 		void LateUpdate()  override;
 		void Render(HDC hdc)  override;
 
-		void ImageLoad(const std::wstring& path);
+		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
+		void SetScale(math::Vector2 scale) { mScale = scale; }
 
 	private:
-		Gdiplus::Image* mImage;
-		UINT mWidth;
-		UINT mHeight;
+		graphics::Texture* mTexture;
+		math::Vector2 mScale;
 	};
 }

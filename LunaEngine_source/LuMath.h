@@ -4,6 +4,9 @@ namespace Luna::math
 {
 	struct Vector2
 	{
+		static Vector2 one;
+		static Vector2 zero;
+
 		float x;
 		float y;
 

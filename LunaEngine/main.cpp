@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "LunaEngine.h"
 #include "../LunaEngine_source/Application.h"
+#include "../LunaEngineV2/LoadResources.h"
 #include "../LunaEngineV2/LoadScene.h"
 
 Luna::Application application;
@@ -131,6 +132,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
+   Luna::LoadResources();
    Luna::LoadScenes();
 
    return TRUE;

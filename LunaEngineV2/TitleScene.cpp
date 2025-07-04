@@ -6,6 +6,8 @@
 #include "PlayScene.h"
 #include "SceneManager.h"
 #include "Object.h"
+#include "Texture.h"
+#include "Resources.h"
 
 namespace Luna
 {
@@ -31,7 +33,13 @@ namespace Luna
 
 		bg = object::Instantiate<Player>(enums::eLayerTpye::BackGrond, Vector2(100.0f, 100.0f));
 		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-		sr->ImageLoad(L"D:/LunaEngine/Resources/Title.png");
+
+		graphics::Texture* bg = Resources::Find<graphics::Texture>(L"Title");
+		sr->SetTexture(bg);
+
+		//graphics::Texture* tex = new graphics::Texture();
+		//tex->Load(L"D:/LunaEngine/Resources/Title.png");
+		//sr->ImageLoad(L"D:/LunaEngine/Resources/Title.png");
 	}
 	void TitleScene::Update()
 	{
