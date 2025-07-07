@@ -7,6 +7,7 @@ namespace Luna::enums
 		Transform,
 		SpriteRenderer,
 		Script,
+		Camera,
 		End,
 	};
 
@@ -14,7 +15,7 @@ namespace Luna::enums
 	enum class eLayerTpye
 	{
 		None,
-		BackGrond,
+		BackGround,
 		Player,
 		Max = 16,
 	};

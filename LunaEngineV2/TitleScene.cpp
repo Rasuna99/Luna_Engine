@@ -8,10 +8,14 @@
 #include "Object.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "PlayerScript.h"
+#include "Camera.h"
+#include "Renderer.h"
 
 namespace Luna
 {
 	TitleScene::TitleScene()
+		: bg(nullptr)
 	{
 	}
 	TitleScene::~TitleScene()
@@ -19,27 +23,7 @@ namespace Luna
 	}
 	void TitleScene::Initialize()
 	{
-		//bg = new Player();
-		//Transform* tr = bg->AddComponent<Transform>();
-		//tr->SetPosition(Vector2(0, 0));
-		//
-		//tr->SetName(L"TR");
-		//
-		//SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-		//sr->SetName(L"SR");
-		//sr->ImageLoad(L"D:/LunaEngine/Resources/Title.png");
-		//
-		//AddGameObject(bg, enums::eLayerTpye::BackGrond);
-
-		bg = object::Instantiate<Player>(enums::eLayerTpye::BackGrond, Vector2(100.0f, 100.0f));
-		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-
-		graphics::Texture* bg = Resources::Find<graphics::Texture>(L"Title");
-		sr->SetTexture(bg);
-
-		//graphics::Texture* tex = new graphics::Texture();
-		//tex->Load(L"D:/LunaEngine/Resources/Title.png");
-		//sr->ImageLoad(L"D:/LunaEngine/Resources/Title.png");
+		
 	}
 	void TitleScene::Update()
 	{

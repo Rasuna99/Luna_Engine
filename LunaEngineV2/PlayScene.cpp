@@ -10,10 +10,14 @@
 #include "Object.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "PlayerScript.h"
+#include "Camera.h"
+#include "Renderer.h"
 
 namespace Luna
 {
 	PlayScene::PlayScene()
+		: mPlayer(nullptr)
 	{
 	}
 
@@ -23,26 +27,28 @@ namespace Luna
 
 	void PlayScene::Initialize()
 	{
-		//bg = new Player();
-		//Transform* tr = bg->AddComponent<Transform>();
-		//tr->SetPos(Vector2(0, 0));
-		//
-		//tr->SetName(L"TR");
-		//
-		//SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-		//sr->SetName(L"SR");
-		//sr->ImageLoad(L"D:/LunaEngine/Resources/CloudOcean.png");
-		//
-		//AddGameObject(bg, eLayerTpye::BackGrond);
+		// 카메라
+		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerTpye::None, Vector2(344.0f, 442.0f));
+		Camera* cameraComp = camera->AddComponent<Camera>();
+		renderer::mainCamera = cameraComp;
+		//camera->AddComponent<PlayerScript>();
 
-		bg = object::Instantiate<Player>(enums::eLayerTpye::BackGrond, Vector2(100.0f, 100.0f));
-		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+		// 플레이어
+		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Player/*, Vector2(100.0f, 100.0f)*/);
+		SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
+		sr->SetScale(Vector2(3.0f, 3.0f));
+		mPlayer->AddComponent<PlayerScript>();
 
-		graphics::Texture* bg = Resources::Find<graphics::Texture>(L"BG");
-		sr->SetTexture(bg);
-		//graphics::Texture* tex = new graphics::Texture();+
-		//tex->Load(L"D:/LunaEngine/Resources/CloudOcean.png");
-		//sr->ImageLoad(L"D:/LunaEngine/Resources/CloudOcean.png");
+		graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"PacMan");
+		sr->SetTexture(pacManTexture);
+
+		GameObject* bg = object::Instantiate<GameObject>(enums::eLayerTpye::BackGround/*, Vector2(100.0f, 100.0f)*/);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetScale(Vector2(3.0f, 3.0f));
+
+		graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
+		bgsr->SetTexture(bgTexture);
+
 	}
 
 	void PlayScene::Update()

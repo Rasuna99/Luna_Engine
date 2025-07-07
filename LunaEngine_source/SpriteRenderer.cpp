@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "assert.h"
+#include "Renderer.h"
 
 namespace Luna
 {
@@ -30,6 +31,7 @@ namespace Luna
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		pos = renderer::mainCamera->CalculatePosition(pos);
 
 		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
 		{

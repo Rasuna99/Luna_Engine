@@ -19,6 +19,8 @@ namespace Luna
 	{
 		for (auto* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
 			comp->Initialize();
 		}
 	}
@@ -27,6 +29,8 @@ namespace Luna
 	{
 		for (auto* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
 			comp->Update();
 		}
 	}
@@ -35,6 +39,8 @@ namespace Luna
 	{
 		for (auto* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
 			comp->LateUpdate();
 		}
 	}
@@ -43,6 +49,8 @@ namespace Luna
 	{
 		for (auto* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
 			comp->Render(hdc);
 		}
 	}
