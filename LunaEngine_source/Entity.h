@@ -1,6 +1,8 @@
 #pragma once
 #include "CommonInclude.h"
 
+using namespace Luna::math;
+
 namespace Luna
 {
 	class Entity

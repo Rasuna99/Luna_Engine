@@ -22,6 +22,7 @@
       <Filter>Contents</Filter>
     </ClInclude>
     <ClInclude Include="LoadResources.h" />
+    <ClInclude Include="PlayerScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PlayScene.cpp">
@@ -33,5 +34,10 @@
     <ClCompile Include="Player.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerScript.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>
