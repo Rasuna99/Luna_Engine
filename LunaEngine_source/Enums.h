@@ -18,6 +18,7 @@ namespace Luna::enums
 		None,
 		BackGround,
 		Player,
+		Particle,
 		Max = 16,
 	};
 

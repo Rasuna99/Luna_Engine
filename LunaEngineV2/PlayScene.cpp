@@ -35,22 +35,26 @@ namespace Luna
 		//camera->AddComponent<PlayerScript>();
 
 		// 플레이어
-		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Player, Vector2(14.0f, 70.0f)); // 테스트 팩맨 포지션 추후에 주석처리 할 것
+		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Particle, Vector2(14.0f, 70.0f)); // 테스트 팩맨 포지션 추후에 주석처리 할 것
 		//SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 		//sr->SetScale(Vector2(3.0f, 3.0f));
 		mPlayer->AddComponent<PlayerScript>();
 
-		graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"Cat");
+		graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"MappleEffect");
 		Animator* animator = mPlayer->AddComponent<Animator>();
-		animator->CreateAnimation(L"CatFrontMove", pacManTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
+		animator->CreateAnimation(L"CatFrontMove", pacManTexture, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::zero, 8, 0.1f);
 		animator->PlayAnimation(L"CatFrontMove", true);
+
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
+		mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+		mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
 		//sr->SetTexture(pacManTexture);
 
-		GameObject* bg = object::Instantiate<GameObject>(enums::eLayerTpye::BackGround/*, Vector2(100.0f, 100.0f)*/);
+		GameObject* bg = object::Instantiate<GameObject>(enums::eLayerTpye::Player/*, Vector2(100.0f, 100.0f)*/);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetScale(Vector2(3.0f, 3.0f));
+		//bgsr->SetScale(Vector2(3.0f, 3.0f));
 
-		graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
+		graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Bubble");
 		bgsr->SetTexture(bgTexture);
 
 	}
