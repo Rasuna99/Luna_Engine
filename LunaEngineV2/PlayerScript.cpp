@@ -92,7 +92,7 @@ namespace Luna
 		if (Input::GetKey(eKeyCode::Up))
 		{
 			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"UptWalk");
+			mAnimator->PlayAnimation(L"UpWalk");
 		}
 		if (Input::GetKey(eKeyCode::Down))
 		{
