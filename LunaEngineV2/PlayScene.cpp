@@ -40,10 +40,21 @@ namespace Luna
 		//sr->SetScale(Vector2(3.0f, 3.0f));
 		mPlayer->AddComponent<PlayerScript>();
 
-		graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"MappleEffect");
+		graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"Cat");
 		Animator* animator = mPlayer->AddComponent<Animator>();
-		animator->CreateAnimation(L"CatFrontMove", pacManTexture, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::zero, 8, 0.1f);
-		animator->PlayAnimation(L"CatFrontMove", true);
+		animator->CreateAnimation(L"DownWalk", pacManTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
+		animator->CreateAnimation(L"RightWalk", pacManTexture, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
+		animator->CreateAnimation(L"UpWalk", pacManTexture, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
+		animator->CreateAnimation(L"LeftWalk", pacManTexture, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
+		animator->CreateAnimation(L"SitDown", pacManTexture, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.1f);
+		animator->CreateAnimation(L"Grooming", pacManTexture, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
+
+		animator->PlayAnimation(L"SitDown", false);
+
+		//graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"MappleEffect");
+		//Animator* animator = mPlayer->AddComponent<Animator>();
+		//animator->CreateAnimation(L"CatFrontMove", pacManTexture, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::zero, 8, 0.1f);
+		//animator->PlayAnimation(L"CatFrontMove", true);
 
 		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
 		mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
