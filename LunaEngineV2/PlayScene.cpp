@@ -37,41 +37,21 @@ namespace Luna
 		//camera->AddComponent<PlayerScript>();
 
 		// 플레이어
-		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Particle, Vector2(14.0f, 70.0f)); // 테스트 팩맨 포지션 추후에 주석처리 할 것
-		//SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-		//sr->SetScale(Vector2(3.0f, 3.0f));
+		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Player, Vector2(14.0f, 70.0f)); // 테스트 팩맨 포지션 추후에 주석처리 할 것
 		mPlayer->AddComponent<PlayerScript>();
 
-		graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"Cat");
+		graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
 		Animator* animator = mPlayer->AddComponent<Animator>();
-		animator->CreateAnimation(L"DownWalk", pacManTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
-		animator->CreateAnimation(L"RightWalk", pacManTexture, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
-		animator->CreateAnimation(L"UpWalk", pacManTexture, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
-		animator->CreateAnimation(L"LeftWalk", pacManTexture, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
-		animator->CreateAnimation(L"SitDown", pacManTexture, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.1f);
-		animator->CreateAnimation(L"Grooming", pacManTexture, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::zero, 4, 0.3f);
+		animator->CreateAnimation(L"Idle", playerTex, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::zero, 1, 0.3f);
+		animator->CreateAnimation(L"FrontWater", playerTex, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::zero, 12, 0.1f);
 
-		animator->PlayAnimation(L"SitDown", false);
-
-		//graphics::Texture* pacManTexture = Resources::Find<graphics::Texture>(L"MappleEffect");
-		//Animator* animator = mPlayer->AddComponent<Animator>();
-		//animator->CreateAnimation(L"CatFrontMove", pacManTexture, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::zero, 8, 0.1f);
-		//animator->PlayAnimation(L"CatFrontMove", true);
+		animator->PlayAnimation(L"Idle", false);
 
 		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
-		mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
-		//mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
-		//sr->SetTexture(pacManTexture);
-
-		//GameObject* bg = object::Instantiate<GameObject>(enums::eLayerTpye::Player/*, Vector2(100.0f, 100.0f)*/);
-		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		////bgsr->SetScale(Vector2(3.0f, 3.0f));
-		//
-		//graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Bubble");
-		//bgsr->SetTexture(bgTexture);
+		mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
 
 		// Cat
-		Cat* cat = object::Instantiate<Cat>(enums::eLayerTpye::Animal); // 테스트 팩맨 포지션 추후에 주석처리 할 것
+		Cat* cat = object::Instantiate<Cat>(enums::eLayerTpye::Animal);
 		cat->AddComponent<CatScript>();
 
 		graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");

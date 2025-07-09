@@ -8,9 +8,10 @@ namespace Luna
 	public:
 		enum class eState
 		{
-			SitDown,
+			Idle,
 			Walk,
 			Sleep,
+			Water,
 			Attack,
 		};
 
@@ -23,8 +24,9 @@ namespace Luna
 		void Render(HDC hdc) override;
 
 	private:
-		void sitDown();
+		void idle();
 		void move();
+		void water();
 
 	private:
 		eState mState;

@@ -8,7 +8,7 @@
 namespace Luna
 {
 	PlayerScript::PlayerScript()
-		: mState(PlayerScript::eState::SitDown)
+		: mState(PlayerScript::eState::Idle)
 		, mAnimator(nullptr)
 	{
 	}
@@ -28,13 +28,16 @@ namespace Luna
 		
 		switch (mState)
 		{
-		case Luna::PlayerScript::eState::SitDown:
-			sitDown();
+		case Luna::PlayerScript::eState::Idle:
+			idle();
 			break;
 		case Luna::PlayerScript::eState::Walk:
 			move();
 			break;
 		case Luna::PlayerScript::eState::Sleep:
+			break;
+		case Luna::PlayerScript::eState::Water:
+			water();
 			break;
 		case Luna::PlayerScript::eState::Attack:
 			break;
@@ -77,17 +80,24 @@ namespace Luna
 	void PlayerScript::Render(HDC hdc)
 	{
 	}
-	void PlayerScript::sitDown()
+	void PlayerScript::idle()
 	{
-		if (Input::GetKey(eKeyCode::Right))
+		if (Input::GetKey(eKeyCode::LButton))
 		{
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"RightWalk");
+			mState = PlayerScript::eState::Water;
+			mAnimator->PlayAnimation(L"FrontWater", false);
+
+			Vector2 mousePos = Input::GetMousePosition();
 		}
 		if (Input::GetKey(eKeyCode::Left))
 		{
 			mState = PlayerScript::eState::Walk;
 			mAnimator->PlayAnimation(L"LeftWalk");
+		}
+		if (Input::GetKey(eKeyCode::Right))
+		{
+			mState = PlayerScript::eState::Walk;
+			mAnimator->PlayAnimation(L"RightWalk");
 		}
 		if (Input::GetKey(eKeyCode::Up))
 		{
@@ -126,8 +136,16 @@ namespace Luna
 
 		if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left) || Input::GetKeyUp(eKeyCode::Up) || Input::GetKeyUp(eKeyCode::Down))
 		{
-			mState = PlayerScript::eState::SitDown;
+			mState = PlayerScript::eState::Idle;
 			mAnimator->PlayAnimation(L"SitDown", false);
+		}
+	}
+	void PlayerScript::water()
+	{
+		if (mAnimator->IsCompleteAnimation())
+		{
+			mState = eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
 		}
 	}
 }

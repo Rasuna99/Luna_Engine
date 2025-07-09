@@ -1,8 +1,12 @@
 #include "Input.h"
+#include "Application.h"
+
+extern Luna::Application application;
 
 namespace Luna
 {
 	std::vector<Input::Key> Input::mKeys = {};
+	math::Vector2 Input::mMousePosition = math::Vector2::one;
 
 	int ASCII[(UINT)eKeyCode::End] =
 	{
@@ -10,6 +14,7 @@ namespace Luna
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP,
+		VK_LBUTTON, VK_MBUTTON, VK_RBUTTON,
 	};
 
 	void Input::Initialize()
@@ -71,13 +76,18 @@ namespace Luna
 	}
 	void Input::updateKey(Input::Key& key)
 	{
-		if (isKeyDown(key.KeyCode))
+		if (GetFocus())
 		{
-			updateKeyDown(key);
+			if (isKeyDown(key.KeyCode))
+				updateKeyDown(key);
+			else
+				updateKeyUp(key);
+
+			getMousePositionByWindow();
 		}
 		else
 		{
-			updateKeyUp(key);
+			clearKeys();
 		}
 	}
 	bool Input::isKeyDown(eKeyCode code)
@@ -101,5 +111,26 @@ namespace Luna
 			key.state = eKeyState::None;
 
 		key.bPressed = false;
+	}
+	void Input::getMousePositionByWindow()
+	{
+		POINT mousePos = {};
+		GetCursorPos(&mousePos);
+		ScreenToClient(application.GetHwnd(), &mousePos);
+
+		mMousePosition.x = mousePos.x;
+		mMousePosition.y = mousePos.y;
+	}
+	void Input::clearKeys()
+	{
+		for (Key& key : mKeys)
+		{
+			if (key.state == eKeyState::Down || key.state == eKeyState::Pressed)
+				key.state = eKeyState::Up;
+			else if (key.state == eKeyState::Up)
+				key.state = eKeyState::None;
+
+			key.bPressed = false;
+		}
 	}
 }
