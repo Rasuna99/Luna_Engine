@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "LuTime.h"
 #include "SceneManager.h"
+#include "Resources.h"
 
 namespace Luna
 {
@@ -28,8 +29,6 @@ namespace Luna
 		initializeEtc();
 
 		SceneManager::Initialize();
-
-		
 	}
 	
 	void Application::Run()
@@ -102,5 +101,11 @@ namespace Luna
 	void Application::copyRenderTarget(HDC source, HDC dest)
 	{
 		BitBlt(dest, 0, 0, mWidth, mHeight, source, 0, 0, SRCCOPY);
+	}
+
+	void Application::Release()
+	{
+		SceneManager::Release();
+		Resources::Release();
 	}
 }

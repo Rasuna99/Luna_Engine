@@ -34,7 +34,6 @@ namespace Luna
 		GameObject* camera = object::Instantiate<GameObject>(enums::eLayerTpye::None, Vector2(344.0f, 442.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		renderer::mainCamera = cameraComp;
-		//camera->AddComponent<PlayerScript>();
 
 		// 플레이어
 		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Player, Vector2(14.0f, 70.0f)); // 테스트 팩맨 포지션 추후에 주석처리 할 것
@@ -53,6 +52,7 @@ namespace Luna
 		// Cat
 		Cat* cat = object::Instantiate<Cat>(enums::eLayerTpye::Animal);
 		cat->AddComponent<CatScript>();
+		cameraComp->SetTarget(cat);
 
 		graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
 		Animator* catAnimator = cat->AddComponent<Animator>();

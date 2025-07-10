@@ -8,6 +8,14 @@ namespace Luna
 	}
 	Layer::~Layer()
 	{
+		for (auto& gameObj : mGameObjects)
+		{
+			if (gameObj == nullptr)
+				continue;
+			
+			delete gameObj;
+			gameObj = nullptr;
+		}
 	}
 	void Layer::Initialize()
 	{

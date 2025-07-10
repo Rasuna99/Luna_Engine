@@ -13,6 +13,14 @@ namespace Luna
 
 	GameObject::~GameObject()
 	{
+		for (auto& comp : mComponents)
+		{
+			if (comp == nullptr)
+				continue;
+
+			delete comp;
+			comp = nullptr;
+		}
 	}
 
 	void GameObject::Initialize()
