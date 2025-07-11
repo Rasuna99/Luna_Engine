@@ -36,6 +36,8 @@ namespace Luna
 		Update();
 		LateUpdate();
 		Render();
+
+		SceneManager::Destroy();
 	}
 
 	void Application::Update()
@@ -59,6 +61,11 @@ namespace Luna
 		SceneManager::Render(mBackHdc);
 
 		copyRenderTarget(mBackHdc, mHdc);
+	}
+
+	void Destroy()
+	{
+		SceneManager::Destroy();
 	}
 
 	void Application::clearRenderTarget()

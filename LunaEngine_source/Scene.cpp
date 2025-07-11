@@ -64,6 +64,17 @@ namespace Luna
 			layer->Render(hdc);
 		}
 	}
+	void Scene::Destroy()
+	{
+		for (Layer* layer : mLayers)
+		{
+			if (layer == nullptr)
+				continue;
+
+			layer->Destroy();
+		}
+	}
+
 	void Scene::OnEnter()
 	{
 	}

@@ -1,5 +1,6 @@
 #include "Texture.h"
 #include "Application.h"
+#include "Resources.h"
 
 extern Luna::Application application;
 
@@ -7,10 +8,36 @@ namespace Luna::graphics
 {
 	Texture::Texture()
 		: Resource(enums::eResourceType::Texture)
+		, mbAlpha(false)
 	{
 	}
 	Texture::~Texture()
 	{
+	}
+
+	Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
+	{
+		Texture* image = Resources::Find<Texture>(name);
+		if (image)
+			return image;
+
+		image = new Texture();
+		image->SetName(name);
+		image->SetWidth(width);
+		image->Setheight(height);
+
+		HDC hdc = application.GetHdc();
+		HWND hwnd = application.GetHwnd();
+
+		image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
+		image->mHdc = CreateCompatibleDC(hdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
+		DeleteObject(oldBitmap);
+
+		Resources::Insert(name + L"Image", image);
+
+		return image;
 	}
 	HRESULT Texture::Load(const std::wstring& path)
 	{	

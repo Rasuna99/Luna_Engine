@@ -4,6 +4,7 @@
 #include "../LunaEngine_source/GameObject.h"
 #include "../LunaEngine_source/LuTime.h"
 #include "../LunaEngine_source/Animator.h"
+#include "../LunaEngine_source/Object.h"
 #include <assert.h>
 
 namespace Luna
@@ -12,6 +13,7 @@ namespace Luna
 		: mState(CatScript::eState::SitDown)
 		, mAnimator(nullptr)
 		, mTime(0.0f)
+		, mDeathTime(0.0f)
 	{
 	}
 	CatScript::~CatScript()
@@ -23,6 +25,12 @@ namespace Luna
 	}
 	void CatScript::Update()
 	{
+		mDeathTime += Time::GetDeltaTime();
+		if (mDeathTime > 6.0f)
+		{
+			//object::Destroy(GetOwner());
+		}
+
 		if (mAnimator == nullptr)
 		{
 			mAnimator = GetOwner()->GetComponent<Animator>();

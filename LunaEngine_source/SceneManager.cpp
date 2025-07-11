@@ -48,4 +48,8 @@ namespace Luna
 			iter.second = nullptr;
 		}
 	}
+	void SceneManager::Destroy()
+	{
+		mActiveScene->Destroy();
+	}
 }

@@ -1,5 +1,6 @@
 #include "Animator.h"
-#include "Animation.h"
+#include "Texture.h"
+#include "Resources.h"
 
 namespace Luna
 {
@@ -66,6 +67,39 @@ namespace Luna
 		mEvents.insert(std::make_pair(name, events));
 
 		mAnimations.insert(std::make_pair(name, animation));
+	}
+	void Animator::CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration)
+	{
+		Animation* animation = nullptr;
+		animation = FindAnimation(name);
+		if (animation != nullptr)
+			return;
+
+		int fileCount = 0;
+		std::filesystem::path fs(path);
+		std::vector<graphics::Texture*> imges = {};
+		for (auto& p : std::filesystem::recursive_directory_iterator(fs))
+		{
+			std::wstring fileName = p.path().filename();
+			std::wstring fullName = p.path();
+
+			graphics::Texture* texture = Resources::Load<graphics::Texture>(fileName, fullName);
+			imges.push_back(texture);
+			fileCount++;
+		}
+
+		UINT sheetWidth = imges[0]->GetWidth() * fileCount;
+		UINT sheetHeight = imges[0]->GetHeight();
+		graphics::Texture* spriteSheet = graphics::Texture::Create(name, sheetWidth, sheetHeight);
+
+		UINT imageWidth = imges[0]->GetWidth();
+		UINT imageHeight = imges[0]->GetHeight();
+		for (size_t i = 0; i < imges.size(); i++)
+		{
+			BitBlt(spriteSheet->GetHdc(), i * imageWidth, 0, imageWidth, imageHeight, imges[i]->GetHdc(), 0, 0, SRCCOPY);
+		}
+
+		CreateAnimation(name, spriteSheet, Vector2(0.0f, 0.0f), Vector2(imageWidth, imageHeight), offset, fileCount, duration);
 	}
 	Animation* Animator::FindAnimation(const std::wstring& name)
 	{
