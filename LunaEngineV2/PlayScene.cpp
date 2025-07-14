@@ -38,7 +38,7 @@ namespace Luna
 		// 플레이어
 		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Player, Vector2(14.0f, 70.0f)); // 테스트 팩맨 포지션 추후에 주석처리 할 것
 		mPlayer->AddComponent<PlayerScript>();
-		
+
 		graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
 		Animator* animator = mPlayer->AddComponent<Animator>();
 		animator->CreateAnimation(L"Idle", playerTex, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::zero, 1, 0.3f);
@@ -101,6 +101,7 @@ namespace Luna
 	{
 		Scene::Render(hdc);
 	}
+
 	void PlayScene::OnEnter()
 	{
 	}

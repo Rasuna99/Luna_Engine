@@ -27,6 +27,7 @@ namespace Luna
 		void idle();
 		void move();
 		void water();
+	
 
 	private:
 		eState mState;

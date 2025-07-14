@@ -93,14 +93,29 @@ namespace Luna
 	void CatScript::sitDown()
 	{
 		mTime += Time::GetDeltaTime();
-		if (mTime > 5.0f)
+
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+		pos += Vector2(-1.0f, 1.0f) * (100.0f * Time::GetDeltaTime());
+		tr->SetPosition(pos);
+
+
+		Vector2 mousPos = Vector2::zero;
+		if (Input::GetKeyDown(eKeyCode::LButton))
 		{
-			mState = CatScript::eState::Walk;
-			int direction = rand() % 4;
-			mDirection = (eDirection)direction;
-			playWalkAnimationByDirection(mDirection);
-			mTime = 0.0f;
+			mousPos = Input::GetMousePosition();
 		}
+		Vector2 dest = mousPos - pos;
+		pos += mousPos.normalize() * (100.0f * Time::GetDeltaTime());
+
+		//if (mTime > 5.0f)
+		//{
+		//	mState = CatScript::eState::Walk;
+		//	int direction = rand() % 4;
+		//	mDirection = (eDirection)direction;
+		//	playWalkAnimationByDirection(mDirection);
+		//	mTime = 0.0f;
+		//}
 	}
 
 	void CatScript::layDown()

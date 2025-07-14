@@ -6,6 +6,7 @@
 #include <map>
 #include <functional>
 #include <filesystem>
+#include <math.h>
 
 #include "LuMath.h"
 

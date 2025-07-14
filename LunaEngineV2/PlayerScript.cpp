@@ -4,6 +4,10 @@
 #include "../LunaEngine_source/GameObject.h"
 #include "../LunaEngine_source/LuTime.h"
 #include "../LunaEngine_source/Animator.h"
+#include "Cat.h"
+#include "CatScript.h"
+#include "../LunaEngine_source/Object.h"
+#include "../LunaEngine_source/Resources.h"
 
 namespace Luna
 {
@@ -86,7 +90,7 @@ namespace Luna
 		{
 			mState = PlayerScript::eState::Water;
 			mAnimator->PlayAnimation(L"FrontWater", false);
-
+		
 			Vector2 mousePos = Input::GetMousePosition();
 		}
 		if (Input::GetKey(eKeyCode::Left))

@@ -32,6 +32,7 @@ namespace Luna
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
+		void SetPlayer(GameObject* player) { mPlayer = player; }
 
 	private:
 		void sitDown();
@@ -39,6 +40,7 @@ namespace Luna
 		void layDown();
 		void playWalkAnimationByDirection(eDirection dir);
 		void translate(Transform* tr);
+		
 
 	private:
 		eState mState;
@@ -46,5 +48,7 @@ namespace Luna
 		eDirection mDirection;
 		float mTime;
 		float mDeathTime;
+
+		GameObject* mPlayer;
 	};
 }
