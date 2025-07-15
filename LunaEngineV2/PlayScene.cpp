@@ -37,14 +37,15 @@ namespace Luna
 
 		// 플레이어
 		mPlayer = object::Instantiate<Player>(enums::eLayerTpye::Player, Vector2(14.0f, 70.0f)); // 테스트 팩맨 포지션 추후에 주석처리 할 것
-		mPlayer->AddComponent<PlayerScript>();
+		PlayerScript* plSrc = mPlayer->AddComponent<PlayerScript>();
 
 		graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
-		Animator* animator = mPlayer->AddComponent<Animator>();
-		animator->CreateAnimation(L"Idle", playerTex, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::zero, 1, 0.3f);
-		animator->CreateAnimation(L"FrontWater", playerTex, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::zero, 12, 0.1f);
+		Animator* PlayerAnimator = mPlayer->AddComponent<Animator>();
+		PlayerAnimator->CreateAnimation(L"Idle", playerTex, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::zero, 1, 0.3f);
+		PlayerAnimator->CreateAnimation(L"FrontWater", playerTex, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::zero, 12, 0.1f);
 		
-		animator->PlayAnimation(L"Idle", false);
+		PlayerAnimator->PlayAnimation(L"Idle", false);
+		PlayerAnimator->GetCompleteEvent(L"FrontWater") = std::bind(&PlayerScript::AttackEffect, plSrc);
 		
 		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
 		mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));

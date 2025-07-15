@@ -96,7 +96,7 @@ namespace Luna
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
-		pos += Vector2(-1.0f, 1.0f) * (100.0f * Time::GetDeltaTime());
+		pos += Vector2(1.0f, 0.0f) * (100.0f * Time::GetDeltaTime());
 		tr->SetPosition(pos);
 
 

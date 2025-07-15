@@ -60,6 +60,7 @@ namespace Luna
 			return;
 
 		animation = new Animation();
+		animation->SetName(name);
 		animation->CreateAnimation(name, spriteSheet, leftTop, size, offset, spriteLength, duration);
 		animation->SetAnimation(this);
 
@@ -68,6 +69,7 @@ namespace Luna
 
 		mAnimations.insert(std::make_pair(name, animation));
 	}
+
 	void Animator::CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration)
 	{
 		Animation* animation = nullptr;
@@ -101,6 +103,7 @@ namespace Luna
 
 		CreateAnimation(name, spriteSheet, Vector2(0.0f, 0.0f), Vector2(imageWidth, imageHeight), offset, fileCount, duration);
 	}
+
 	Animation* Animator::FindAnimation(const std::wstring& name)
 	{
 		auto iter = mAnimations.find(name);
@@ -109,6 +112,7 @@ namespace Luna
 
 		return iter->second;
 	}
+
 	void Animator::PlayAnimation(const std::wstring& name, bool loop)
 	{
 		Animation* animation = FindAnimation(name);
@@ -120,18 +124,19 @@ namespace Luna
 			Events* currentEvents = FindEvents(mActiveAnimation->GetName());
 
 			if (currentEvents)
-				currentEvents->startEvent();
+				currentEvents->endEvent();
 		}
 	
 		Events* nextEvents = FindEvents(animation->GetName());
 
 		if (nextEvents)
-			nextEvents->endEvent();
+			nextEvents->startEvent();
 
 		mActiveAnimation = animation;
 		mActiveAnimation->Reset();
 		mbLoop = loop;
 	}
+
 	Animator::Events* Animator::FindEvents(const std::wstring& name)
 	{
 		auto iter = mEvents.find(name);
@@ -140,16 +145,19 @@ namespace Luna
 
 		return iter->second;
 	}
+
 	std::function<void()>& Animator::GetStartEvent(const std::wstring& name)
 	{
 		Events* events = FindEvents(name);
 		return events->startEvent.mEvent;
 	}
+
 	std::function<void()>& Animator::GetCompleteEvent(const std::wstring& name)
 	{
 		Events* events = FindEvents(name);
 		return events->completeEvent.mEvent;
 	}
+
 	std::function<void()>& Animator::GetEndEvent(const std::wstring& name)
 	{
 		Events* events = FindEvents(name);
